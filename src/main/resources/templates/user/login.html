@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script language="JavaScript">
+        $(function () {
+            $("input[value=注册]").click(function () {
+                location.href="/user/toRegist";
+            });
+        });
+    </script>
+</head>
+<body>
+<center>
+    <form th:action="@{/user/login}" method="post">
+        姓名：<input th:type="text" th:name="uname"/><br/>
+        密码：<input th:type="password" th:name="upass"/><br/>
+        <input th:type="submit" th:value="登录"/>&nbsp;&nbsp;&nbsp;<input th:type="button" th:value="注册"/>
+    </form>
+</center>
+</body>
+</html>

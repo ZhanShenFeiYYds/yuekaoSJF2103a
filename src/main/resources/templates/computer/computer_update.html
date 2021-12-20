@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改</title>
+</head>
+<body>
+<center>
+    <form th:action="@{/computer/update}" method="post" enctype="multipart/form-data">
+        <input th:type="hidden" th:name="id" th:value="${_id.id}"/>
+        名字:<input th:type="text" th:name="name" th:value="${_id.name}"/><br>
+        颜色:<input th:type="text" th:name="color" th:value="${_id.color}"/><br>
+        照片:<input th:type="file" th:name="uploadFile" th:value="${_id.photo}"/><br>
+        日期:<input th:type="date" th:name="productdate" th:value="${_id.productdate}"/><br>
+        <input th:type="submit" th:value="添加"/>
+    </form>
+</center>
+</body>
+</html>

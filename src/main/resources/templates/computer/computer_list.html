@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询</title>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+</head>
+<body>
+<center>
+    <form th:action="@{/computer/findAll}">
+        <input th:type="hidden" th:name="pageNum" th:value="${pageInfo.pageNum}"/>
+        姓名:<input th:type="text" th:name="name" th:placeholder="请输入" th:value="${name}"/>&nbsp;&nbsp;&nbsp;
+        <input th:type="submit" th:value="查询"/>&nbsp;&nbsp;&nbsp;
+        <input th:type="button" th:value="添加"/>
+        <table th:border="1" th:cellspacing="0" th:cellpadding="0" th:width="800px">
+            <tr th:align="center">
+                <th th:width="50px">序号</th>
+                <th>名字</th>
+                <th th:width="100px">颜色</th>
+                <th th:width="100px">图片</th>
+                <th th:width="120px">日期</th>
+                <th th:width="120px">操作</th>
+            </tr>
+            <tr th:each="computer:${pageInfo.list}">
+                <td th:text="${computerStat.index+1}"></td>
+                <td th:text="${computer.name}"></td>
+                <td th:text="${computer.color}"></td>
+                <td ><img style="width:100px;height: 100px " th:src="@{'/'+${computer.photo}}"/></td>
+                <td th:text="${#dates.format(computer.productdate,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                        <span th:if="${computer.status == '0'}">
+                            <input th:type="button" th:value="报修" th:id="${computer.id}"/>
+                        </span>
+                    <span th:if="${computer.status == '1'}">
+                            <input th:type="button" th:value="复用" th:id="${computer.id}"/>
+                        </span>
+                </td>
+            </tr>
+        </table>
+        当前页:<span th:text="${pageInfo.pageNum}"></span>
+        总页数:<span th:text="${pageInfo.pages}"></span>
+        总条数:<span th:text="${pageInfo.total}"></span>
+
+        <input th:type="button" th:value="首页" th:onclick="|jump(${pageInfo.firstPage})|">
+        <input th:type="button" th:value="上一页" th:onclick="|jump(${pageInfo.prePage})|">
+        <input th:type="button" th:value="下一页" th:onclick="|jump(${pageInfo.nextPage})|">
+        <input th:type="button" th:value="尾页" th:onclick="|jump(${pageInfo.lastPage})|">
+    </form>
+</center>
+<script language="JavaScript">
+    function jump(pageNum){
+        if(pageNum < 1){
+            pageNum = 1
+        }
+        if(pageNum > "${pageInfo.pages}"){
+            pageNum = "${pageInfo.pages}";
+        }
+        $("input[name=pageNum]").val(pageNum);//设置页面到隐藏域
+        $("form").submit();
+    }
+    $(function (){
+        $("input[value=添加]").click(function (){
+            location.href="/computer/toAdd";
+        }) ;
+        $("input[value=报修]").click(function (){
+            var id =$(this).attr("id");
+            location.href="/computer/updateStatus?id="+id+"&status=1";
+        });
+        $("input[value=复用]").click(function (){
+            var id =$(this).attr("id");
+            location.href="/computer/updateStatus?id="+id+"&status=0";
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+</head>
+<body>
+<center>
+    <form th:action="@{/computer/add}" method="post" enctype="multipart/form-data">
+        名字:<input th:type="text" th:name="name"/><br>
+        颜色:<input th:type="text" th:name="color"/><br>
+        照片:<input th:type="file" th:name="uploadFile"/><br>
+        日期:<input th:type="date" th:name="productdate"/><br>
+        <input th:type="submit" th:value="添加"/>
+    </form>
+</center>
+</body>
+</html>

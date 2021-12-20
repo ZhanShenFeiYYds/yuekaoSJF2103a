@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <form th:action="@{/user/regist}" method="post">
+        账号：<input th:type="text" th:name="uname"/><br/>
+        密码：<input th:type="password" th:name="upass"/><br/>
+        日期：<input th:type="date" th:name="udate"/><br/>
+        电话号码：<input th:type="text" th:name="uphone"/><br/>
+        <input th:type="submit" th:value="提交"/>
+    </form>
+</center>
+</body>
+</html>
