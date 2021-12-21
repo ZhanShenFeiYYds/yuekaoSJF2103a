@@ -16,6 +16,7 @@ public class UserController {
     @RequestMapping("/toLogin")
     public String toLogin(){
         int i= 0;
+        System.out.println("tianjia");
         return "user/login";
     }
     @RequestMapping("/login")
