@@ -17,6 +17,7 @@ public class UserController {
     public String toLogin(){
         int i= 0;
         System.out.println("tianjia");
+        String qwe = "ssss";
         return "user/login";
     }
     @RequestMapping("/login")
