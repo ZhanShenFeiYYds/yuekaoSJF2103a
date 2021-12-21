@@ -15,6 +15,7 @@ public class UserController {
     private UserService userService;
     @RequestMapping("/toLogin")
     public String toLogin(){
+
         return "user/login";
     }
     @RequestMapping("/login")
